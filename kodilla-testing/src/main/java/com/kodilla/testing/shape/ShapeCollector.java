@@ -32,7 +32,7 @@ public class ShapeCollector {
     }
 
     public String showFigures(){
-        return shapes.stream().map( shape -> shape.getShapeName()).collect(Collectors.joining());
+        return shapes.stream().map(Shape::getShapeName).collect(Collectors.joining());
     }
 
 
