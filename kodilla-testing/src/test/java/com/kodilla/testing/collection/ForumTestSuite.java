@@ -1,4 +1,4 @@
-package com.kodilla.testing.forum;
+package com.kodilla.testing.collection;
 
 
 import com.kodilla.testing.user.SimpleUser;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.*;
 public class ForumTestSuite {
 
     @BeforeEach
-    public void befor(){
+    public void before(){
         System.out.println("Test Case: begin");
     }
 
