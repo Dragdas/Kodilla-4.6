@@ -1,4 +1,5 @@
 import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.iterate.NumbersGenerator;
 
 
 public class StreamMain {
@@ -16,6 +17,9 @@ public class StreamMain {
         poemBeautifier.beautify(poem2, (p -> "ABC "+p+" ABC"));
         poemBeautifier.beautify(poem3,(p -> p.replace('a','4') ));
         poemBeautifier.beautify(poem4, ( p -> p + ", joł!"));
+
+        System.out.println("Generowanie liczb w streamie");
+        NumbersGenerator.generateEven(10);
 
 
     }
