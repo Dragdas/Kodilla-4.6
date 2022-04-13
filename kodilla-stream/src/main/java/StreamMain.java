@@ -19,6 +19,7 @@ public class StreamMain {
                 .filter(user -> user.getPostCount() >= 1)
                 .collect(Collectors.toMap(ForumUser::getUserID, user -> user));
 
+
         forumUserMap.forEach((key, value) -> System.out.println("ID: " + key + " " + value.toString()));
 
     }
