@@ -1,26 +1,25 @@
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.iterate.NumbersGenerator;
+
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
+
+
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class StreamMain {
 
     public static void main(String[] args) {
 
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        Forum forum = new Forum();
 
-        String poem = "Na górze róże";
-        String poem2 = "na dole bez";
-        String poem3 = "biały wiersz";
-        String poem4 = "nie rymuje się";
+        Map<Integer, ForumUser> forumUserMap = forum.getForumUsers().stream()
+                .filter(user -> user.getSex() == 'M')
+                .filter(user -> user.getAge() >= 20)
+                .filter(user -> user.getPostCount() >= 1)
+                .collect(Collectors.toMap(ForumUser::getUserID, user -> user));
 
-        poemBeautifier.beautify(poem, String::toUpperCase);
-        poemBeautifier.beautify(poem2, (p -> "ABC "+p+" ABC"));
-        poemBeautifier.beautify(poem3,(p -> p.replace('a','4') ));
-        poemBeautifier.beautify(poem4, ( p -> p + ", joł!"));
-
-        System.out.println("Generowanie liczb w streamie");
-        NumbersGenerator.generateEven(10);
-
+        forumUserMap.forEach((key, value) -> System.out.println("ID: " + key + " " + value.toString()));
 
     }
 
