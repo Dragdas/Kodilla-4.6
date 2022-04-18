@@ -1,16 +1,18 @@
 package com.kodilla.rps.engine;
 
+import com.kodilla.rps.moves.Moves;
 import com.kodilla.rps.player.Player;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
+import static com.kodilla.rps.engine.Engine.*;
+import static com.kodilla.rps.moves.Moves.*;
+
 public class HumanInteractionHandler {
 
-
-
-    //Używany do pobrania od gracza inputu w formie INT w określonym zakresie
+    //Accepts input from user in INT format, input must be in given range
     public static int getIntInput(String msg, List<Integer> acceptableRangeOfAnswers){
 
         Scanner sc = new Scanner(System.in);
@@ -31,30 +33,32 @@ public class HumanInteractionHandler {
         }
     }
 
-    //Metoda używana do pobrania od gracza inputu w czasie rozgrywania rundy.
-    // Zwraca wartosci 1-5 dla możliwych ruchów
-    // -1 dla wyjścia z gry
-    // -2 dla zrestartowania gry
+
+    //Method used to get player input during round
+    //return int value:
+    // in range of 1-5 (possible moves) or
+    // -1 if player wants to quit the game or
+    // -2 if player wants to restart the game
     public static int getInRoundPlayerInput(Player p){
-        List<Integer>rangeOfIntAnswers = IntStream.range(1, 6).boxed().toList();
+        List<Integer>rangeOfIntAnswers = IntStream.range(1, values().length).boxed().toList();
 
         Scanner sc = new Scanner(System.in);
         String playerInput;
         int result = 0;
         String msg = p.getName() + " it is your turn.\n" +
                 "Please use:\n" +
-                "1. to play rock\n" +
-                "2. to play paper\n" +
-                "3. to play scissors\n" +
-                "4. to play spock\n" +
-                "5. to play lizard\n" +
+                "1. to play " + getMove(1) + "\n" + //Rock
+                "2. to play " + getMove(2) + "\n" + //Paper
+                "3. to play " + getMove(3) + "\n" + //Scissors
+                "4. to play " + getMove(4) + "\n" + //Spock
+                "5. to play " + getMove(5) + "\n" + //Lizard
                 "x - to quit the game\n" +
                 "n - to start new game\n";
 
         while (true){
             System.out.println(msg);
             playerInput = sc.nextLine();
-            System.out.flush();
+            clearScreen();
 
             if(playerInput.equals("x")){
                 String m = "Do you really want to quit game? \n1. Yes\n2. No";

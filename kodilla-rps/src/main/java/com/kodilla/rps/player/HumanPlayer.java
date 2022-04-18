@@ -7,9 +7,7 @@ import java.util.Scanner;
 
 public class HumanPlayer extends Player{
 
-
     public HumanPlayer() {
-
         this.name = askForName();
     }
 
@@ -17,7 +15,6 @@ public class HumanPlayer extends Player{
         System.out.println("Please enter your name: ");
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
-
     }
 
     @Override
@@ -33,7 +30,4 @@ public class HumanPlayer extends Player{
         lastMove = new Move(Moves.getMove(moveNo), this);
         return lastMove;
     }
-
-
-
 }

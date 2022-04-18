@@ -26,11 +26,11 @@ public class Engine {
 
 
     public void play(){
+        //Loops until player wants to play
         while (!playerWantsToTerminateProgram) {
             //initialize game parameters
             clearSettings();
             initializeGame();
-            List<Player> players = List.of(player1,player2);
 
             //Loop rounds until someone wins or quits
             while (!playerWantsToTerminateProgram && !playerWantsToRestartGame && !someoneWon) {
@@ -39,6 +39,9 @@ public class Engine {
                 List<Move> playersMoves = new ArrayList<>();
 
                 //Player 1 turn
+                //getInRoundPlayerInput returns 1-5 for possible moves, -1 if player wants to quit, -2 if player wants to restart
+                //TODO
+                // remove redundant code
                 int player1Input = getInRoundPlayerInput(player1);
                 if (player1Input == -1) {
                     playerWantsToTerminateProgram = true;
@@ -50,12 +53,11 @@ public class Engine {
                     playersMoves.add(player1.generateMove(player1Input));
                 }
                 clearScreen();
+
                 //Player 2 turn
                 if(player2.getClass() == AIPlayer.class){
-
-
-                    Move aiGeneratedMove = player2.generateMove(  Moves.getValueOf(player1.getLastMove().getMove()) );
-
+                    int valueOfOpponentMove = Moves.getValueOf(player1.getLastMove().getMove());
+                    Move aiGeneratedMove = player2.generateMove( valueOfOpponentMove );
                     playersMoves.add( aiGeneratedMove);
                 }else{
                     int player2Input = getInRoundPlayerInput(player2);
@@ -69,28 +71,33 @@ public class Engine {
                         playersMoves.add(player2.generateMove(player2Input));
                     }
                 }
+
+                //find winner & reward winner
+                Collections.sort(playersMoves);
+                boolean draw = true;
+                if(!playersMoves.get(0).equals(playersMoves.get(1)) ){
+                    playersMoves.get(0).getPlayer().addPoint();
+                    draw = false;
+                }
+
+                //Display players choices
                 System.out.println(player1.getName() + " played: " + player1.getLastMove() );
                 System.out.println(player2.getName() + " played: " + player2.getLastMove());
+                String m = draw ? "Its a draw!" : playersMoves.get(0).getPlayer().getName() + " wins!";
+                System.out.println(m);
                 System.out.println("Press any key");
                 Scanner sc = new Scanner(System.in);
                 sc.nextLine();
-
-
                 clearScreen();
-
-                //find winner
-                Collections.sort(playersMoves);
-                //reward winner
-                if(!playersMoves.get(0).equals(playersMoves.get(1)) )
-                    playersMoves.get(0).getPlayer().addPoint();
 
                 // check for victory
                 if( (player1.getScore() >= maxScore) || (player2.getScore() >= maxScore) ){
                     someoneWon = true;
                     Player winner = player1.getScore() >= player2.getScore() ? player1 : player2;
-
                     displayScore();
                     System.out.println("Congratulations to " + winner.getName());
+
+
                     String msg = "Do you want to play again?\n1.Yes \n2.No";
                     int playerInput =  getIntInput(msg,List.of(1,2));
                     if(playerInput == 2)
@@ -104,25 +111,23 @@ public class Engine {
 
     private void initializeGame(){
 
-
         //Set up players settings
-
         System.out.println("Hi! ");
         player1 = new HumanPlayer();
         System.out.println("Nice to meet you " + player1.getName());
 
         String msg = "Do you want to play against friend or AI? \n1 - for human player \n2 - for AI opponent ";
-        List<Integer>rangeOfAnswers = IntStream.range(1, 3).boxed().collect(Collectors.toList());
-        int playerInput = getIntInput(msg, rangeOfAnswers);
+        int playerInput = getIntInput(msg, List.of(1,2));
         player2 = playerInput == 1 ? new HumanPlayer() : new AIPlayer();
 
+        System.out.println();
         System.out.println("Player1: " + player1.getName());
         System.out.println("Player2: " + player2.getName());
+        System.out.println();
 
-        //set up game settings
         //set up max score
         msg = "Please state win condition. \nEnter integer from 1 to 10";
-        rangeOfAnswers = IntStream.range(1, 11).boxed().collect(Collectors.toList());
+        List<Integer> rangeOfAnswers = IntStream.range(1, 11).boxed().collect(Collectors.toList());
         maxScore = getIntInput(msg,rangeOfAnswers);
 
     }
@@ -144,7 +149,7 @@ public class Engine {
         someoneWon = false;
     }
 
-    private void clearScreen(){
+    public static void clearScreen(){
         for ( int i = 0 ; i < 10 ; i++){
             System.out.println("");
         }

@@ -8,7 +8,6 @@ public abstract class Player {
     protected String name;
     private int score = 0;
 
-
     public void addPoint(){
         score++;
     }
@@ -26,6 +25,4 @@ public abstract class Player {
     public int getScore() {
         return score;
     }
-
-
 }

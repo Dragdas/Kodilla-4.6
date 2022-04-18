@@ -3,6 +3,9 @@ package com.kodilla.rps.moves;
 import java.util.List;
 import java.util.Map;
 
+
+//TODO
+//to na pewno można załatwić ładniej
 public enum Moves {
 
     NULL,
@@ -12,21 +15,20 @@ public enum Moves {
     SPOCK,
     LIZARD;
 
-    private static Moves[] list = Moves.values();
+    private static final Moves[] list = Moves.values();
 
-    public static Map<Moves, List<Moves>> winConditions = Map.of(
-            ROCK,List.of(SCISSORS,LIZARD),
-            PAPER,List.of(ROCK,SPOCK),
-            SCISSORS,List.of(PAPER,LIZARD),
-            SPOCK,List.of(SCISSORS,ROCK),
-            LIZARD,List.of(SPOCK,PAPER)
+    public static final Map<Moves, List<Moves>> winConditions = Map.of(
+                            ROCK,    List.of(SCISSORS,LIZARD),
+                            PAPER,   List.of(ROCK,SPOCK),
+                            SCISSORS,List.of(PAPER,LIZARD),
+                            SPOCK,   List.of(SCISSORS,ROCK),
+                            LIZARD,  List.of(SPOCK,PAPER)
     );
 
-
     public static Moves getMove(int i) {
+        if( (i >= list.length) || i <= 0 )
+            return NULL;
         return list[i];
-
-
     }
 
     public static int getValueOf(Moves move){
@@ -36,7 +38,4 @@ public enum Moves {
         }
         return 0;
     }
-
-
-
 }

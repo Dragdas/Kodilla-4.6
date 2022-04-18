@@ -41,7 +41,6 @@ public class Move implements Comparable<Move> {
         return Objects.hash(move);
     }
 
-
     @Override
     public int compareTo(Move otherMove) {
         if(this.equals(otherMove))
@@ -50,7 +49,6 @@ public class Move implements Comparable<Move> {
 
         if(winConditions.contains(otherMove.getMove()))
             return -1;
-
 
         return 1;
     }
