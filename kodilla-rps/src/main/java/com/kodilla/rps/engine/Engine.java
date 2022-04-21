@@ -40,8 +40,6 @@ public class Engine {
 
                 //Player 1 turn
                 //getInRoundPlayerInput returns 1-5 for possible moves, -1 if player wants to quit, -2 if player wants to restart
-                //TODO
-                // remove redundant code
                 int player1Input = getInRoundPlayerInput(player1);
                 if (player1Input == -1) {
                     playerWantsToTerminateProgram = true;

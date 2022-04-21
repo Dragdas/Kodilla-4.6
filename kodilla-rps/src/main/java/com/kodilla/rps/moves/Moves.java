@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 
-//TODO
-//to na pewno można załatwić ładniej
 public enum Moves {
 
     NULL,

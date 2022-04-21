@@ -26,11 +26,6 @@ public class rpsTestSuite {
         Move rock  = new Move(ROCK,player);
         Move paper = new Move(PAPER,player);
 
-        //TODO dlaczego List.of nie działa a ArrayList działa?
-        //nie działa WTF?!
-        //List<Move> moves = List.of(rock, paper);
-
-        //działa
         List<Move> moves = new ArrayList<>();
         moves.add(rock);
         moves.add(paper);
