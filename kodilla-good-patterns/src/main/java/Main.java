@@ -1,8 +1,13 @@
-import com.kodilla.good.patterns.challenges.*;
-import com.kodilla.good.patterns.challenges.cartlogic.Cart;
-import com.kodilla.good.patterns.challenges.cartlogic.CartEntry;
-import com.kodilla.good.patterns.challenges.products.Game;
-import com.kodilla.good.patterns.challenges.products.Kapcie;
+import com.kodilla.good.patterns.challenges.allegro.*;
+import com.kodilla.good.patterns.challenges.food2door.Order;
+import com.kodilla.good.patterns.challenges.food2door.product.NewYorkStrip;
+import com.kodilla.good.patterns.challenges.food2door.product.Product;
+import com.kodilla.good.patterns.challenges.food2door.product.ProductDto;
+import com.kodilla.good.patterns.challenges.food2door.product.Ribeye;
+import com.kodilla.good.patterns.challenges.food2door.suppliers.FoodSupplier;
+import com.kodilla.good.patterns.challenges.food2door.suppliers.SteakSupplier;
+
+import java.util.List;
 
 public class Main {
 
@@ -10,25 +15,22 @@ public class Main {
 
         //MovieStore.challengeSolution();
 
-        ProductOrderService productOrderService = new ProductOrderService();
+        //AllegroSolutionRunner.runSolution();
 
-        Order order = generateOrder();
+        FoodSupplier supplier = new SteakSupplier();
+        Order order = generateOrder(supplier);
 
-        productOrderService.executeOrder(order);
-
+        System.out.println( supplier.getStockInformation() );
+        long orderId = supplier.process( order);
+        System.out.println("Is order completed: " + supplier.isOrderCompleted(orderId));
 
     }
 
-    private static Order generateOrder() {
-
-        Client client = new Client("Obi One");
-        Cart cart = new Cart();
-        cart.addCartEntry(new CartEntry(new Game("SW: KoTOR"), 1  ));
-        cart.addCartEntry(new CartEntry(new Kapcie("Kapcie babuszki"), 2  ));
-
-        DeliveryDetails deliveryDetails = new DeliveryDetails("Tatooine");
-
-        return new Order(client, cart, deliveryDetails);
+    private static Order generateOrder(FoodSupplier supplier) {
+        return new Order(supplier, List.of(
+                new ProductDto(new Ribeye(), 5),
+                new ProductDto(new NewYorkStrip(), 2)
+        ));
     }
 
 }

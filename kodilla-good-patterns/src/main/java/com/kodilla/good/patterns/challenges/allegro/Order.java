@@ -1,6 +1,6 @@
-package com.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges.allegro;
 
-import com.kodilla.good.patterns.challenges.cartlogic.Cart;
+import com.kodilla.good.patterns.challenges.allegro.cartlogic.Cart;
 
 public class Order {
 

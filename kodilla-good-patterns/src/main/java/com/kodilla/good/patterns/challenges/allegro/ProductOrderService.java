@@ -1,11 +1,11 @@
-package com.kodilla.good.patterns.challenges;
+package com.kodilla.good.patterns.challenges.allegro;
 
-import com.kodilla.good.patterns.challenges.adressing.AddressingService;
-import com.kodilla.good.patterns.challenges.adressing.UpsAddressEtiquetteService;
-import com.kodilla.good.patterns.challenges.complettingService.CompletingService;
-import com.kodilla.good.patterns.challenges.complettingService.PackagedGoodsCompletingService;
-import com.kodilla.good.patterns.challenges.packaging.PackagingService;
-import com.kodilla.good.patterns.challenges.packaging.PackingBoxService;
+import com.kodilla.good.patterns.challenges.allegro.adressing.AddressingService;
+import com.kodilla.good.patterns.challenges.allegro.adressing.UpsAddressEtiquetteService;
+import com.kodilla.good.patterns.challenges.allegro.complettingService.CompletingService;
+import com.kodilla.good.patterns.challenges.allegro.complettingService.PackagedGoodsCompletingService;
+import com.kodilla.good.patterns.challenges.allegro.packaging.PackagingService;
+import com.kodilla.good.patterns.challenges.allegro.packaging.PackingBoxService;
 
 public class ProductOrderService {
 

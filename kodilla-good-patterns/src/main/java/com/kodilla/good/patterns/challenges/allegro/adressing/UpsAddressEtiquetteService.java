@@ -1,6 +1,6 @@
-package com.kodilla.good.patterns.challenges.adressing;
+package com.kodilla.good.patterns.challenges.allegro.adressing;
 
-import com.kodilla.good.patterns.challenges.DeliveryDetails;
+import com.kodilla.good.patterns.challenges.allegro.DeliveryDetails;
 
 public class UpsAddressEtiquetteService implements AddressingService{
 

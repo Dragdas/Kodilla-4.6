@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.challenges.products;
+package com.kodilla.good.patterns.challenges.allegro.products;
 
 public class Kapcie implements Product{
 

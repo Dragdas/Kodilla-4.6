@@ -1,6 +1,6 @@
-package com.kodilla.good.patterns.challenges.complettingService;
+package com.kodilla.good.patterns.challenges.allegro.complettingService;
 
-import com.kodilla.good.patterns.challenges.cartlogic.CartEntry;
+import com.kodilla.good.patterns.challenges.allegro.cartlogic.CartEntry;
 
 import java.util.List;
 

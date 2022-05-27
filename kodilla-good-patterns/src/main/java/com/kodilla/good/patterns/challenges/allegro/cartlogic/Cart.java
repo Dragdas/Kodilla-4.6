@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.challenges.cartlogic;
+package com.kodilla.good.patterns.challenges.allegro.cartlogic;
 
 import java.util.ArrayList;
 import java.util.List;
