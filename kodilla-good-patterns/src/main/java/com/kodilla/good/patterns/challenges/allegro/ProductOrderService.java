@@ -9,15 +9,22 @@ import com.kodilla.good.patterns.challenges.allegro.packaging.PackingBoxService;
 
 public class ProductOrderService {
 
+    PackagingService packagingService;
+    AddressingService addressingService;
+    CompletingService completingService;
+
+    public ProductOrderService(PackagingService packagingService, AddressingService addressingService, CompletingService completingService) {
+        this.packagingService = packagingService;
+        this.addressingService = addressingService;
+        this.completingService = completingService;
+    }
 
     public boolean executeOrder(Order order){
 
         if( !order.isValid() )
             return false;
 
-        PackagingService packagingService = new PackingBoxService();
-        AddressingService addressingService = new UpsAddressEtiquetteService();
-        CompletingService completingService = new PackagedGoodsCompletingService();
+
 
         packagingService.prepareContainer(order.getClient());
         addressingService.prepareAddressEtiquette(order.getDeliveryDetails());
