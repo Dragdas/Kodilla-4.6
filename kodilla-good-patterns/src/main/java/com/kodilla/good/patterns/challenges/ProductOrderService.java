@@ -12,7 +12,7 @@ public class ProductOrderService {
 
     public boolean executeOrder(Order order){
 
-        if( !order.isOrderValid() )
+        if( !order.isValid() )
             return false;
 
         PackagingService packagingService = new PackingBoxService();

@@ -2,7 +2,7 @@ package com.kodilla.good.patterns.challenges.products;
 
 public class Kapcie implements Product{
 
-    private String name;
+    private final String name;
 
     public Kapcie(String name) {
         this.name = name;

@@ -6,6 +6,6 @@ public class UpsAddressEtiquetteService implements AddressingService{
 
     @Override
     public void prepareAddressEtiquette(DeliveryDetails deliveryDetails) {
-        System.out.println("Address package to " + deliveryDetails.getAdress());
+        System.out.println("Address package to " + deliveryDetails.getAddress());
     }
 }

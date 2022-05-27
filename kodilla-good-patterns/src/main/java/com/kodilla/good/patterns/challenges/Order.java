@@ -14,7 +14,7 @@ public class Order {
         this.deliveryDetails = deliveryDetails;
     }
 
-    public boolean isOrderValid(){
+    public boolean isValid(){
         System.out.println("Validating order.");
         return client.validate() && cart.validate() && deliveryDetails.validate() ;
 

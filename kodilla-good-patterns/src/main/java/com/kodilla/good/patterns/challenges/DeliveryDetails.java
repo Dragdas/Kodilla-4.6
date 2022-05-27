@@ -2,10 +2,10 @@ package com.kodilla.good.patterns.challenges;
 
 public class DeliveryDetails {
 
-    private String adress;
+    private final String address;
 
-    public DeliveryDetails(String adress) {
-        this.adress = adress;
+    public DeliveryDetails(String address) {
+        this.address = address;
     }
 
     public boolean validate() {
@@ -13,7 +13,7 @@ public class DeliveryDetails {
         return true;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 }

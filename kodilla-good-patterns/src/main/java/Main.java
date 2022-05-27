@@ -11,6 +11,7 @@ public class Main {
         //MovieStore.challengeSolution();
 
         ProductOrderService productOrderService = new ProductOrderService();
+
         Order order = generateOrder();
 
         productOrderService.executeOrder(order);
