@@ -4,13 +4,26 @@ import com.kodilla.good.patterns.challenges.food2door.Order;
 import com.kodilla.good.patterns.challenges.food2door.StockDto;
 import com.kodilla.good.patterns.challenges.food2door.product.Product;
 import com.kodilla.good.patterns.challenges.food2door.product.Ribeye;
+import com.kodilla.good.patterns.challenges.food2door.services.connectivity.SupplierConnectivityService;
+import com.kodilla.good.patterns.challenges.food2door.services.feching.OrderFetchingService;
+import com.kodilla.good.patterns.challenges.food2door.services.retrivering.StatusRetrieverService;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class FoodSupplier implements SupplierService{
+public abstract class FoodSupplier implements Supplier {
 
     List<Long> idsOfProcessedOrders = new ArrayList<>();
+
+    SupplierConnectivityService supplierConnectivityService;
+    OrderFetchingService orderFetchingService;
+    StatusRetrieverService statusRetrieverService;
+
+    public FoodSupplier(SupplierConnectivityService supplierConnectivityService, OrderFetchingService orderFetchingService, StatusRetrieverService statusRetrieverService) {
+        this.supplierConnectivityService = supplierConnectivityService;
+        this.orderFetchingService = orderFetchingService;
+        this.statusRetrieverService = statusRetrieverService;
+    }
 
     @Override
     public StockDto getStockInformation() {
@@ -19,19 +32,18 @@ public abstract class FoodSupplier implements SupplierService{
 
     @Override
     public long process(Order order) {
-        System.out.println("Connecting to " + getSupplierName());
-        System.out.println("Sending order");
-        System.out.println(order.toString());
-        System.out.println("Retrieve process id");
-        Long processID = Long.valueOf(1);
+        supplierConnectivityService.connectTo(this);
+
+        orderFetchingService.fetchOrder(order);
+
+        Long processID = statusRetrieverService.getOrderId(order);
         idsOfProcessedOrders.add(processID);
         return processID;
     }
 
     @Override
     public boolean isOrderCompleted(Long id) {
-        System.out.println("Retrieve order status");
-        return true;
+        return statusRetrieverService.isOrderProcessed(id);
     }
 
     public String getSupplierName(){

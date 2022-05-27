@@ -13,7 +13,6 @@ public class Ribeye implements Product{
 
     @Override
     public int getAvailableAmount() {
-        System.out.println("Check available amount of ribeye stakes");
         return 256;
     }
 
