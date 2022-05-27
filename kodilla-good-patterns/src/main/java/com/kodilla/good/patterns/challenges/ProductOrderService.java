@@ -1,5 +1,12 @@
 package com.kodilla.good.patterns.challenges;
 
+import com.kodilla.good.patterns.challenges.adressing.AddressingService;
+import com.kodilla.good.patterns.challenges.adressing.UpsAddressEtiquetteService;
+import com.kodilla.good.patterns.challenges.complettingService.CompletingService;
+import com.kodilla.good.patterns.challenges.complettingService.PackagedGoodsCompletingService;
+import com.kodilla.good.patterns.challenges.packaging.PackagingService;
+import com.kodilla.good.patterns.challenges.packaging.PackingBoxService;
+
 public class ProductOrderService {
 
 
@@ -8,11 +15,13 @@ public class ProductOrderService {
         if( !order.isOrderValid() )
             return false;
 
-        System.out.println("Prepare delivery for: " + order.getClient().getUserName() );
-        System.out.println("Address package: " + order.getDeliveryDetails().getAdress());
-        System.out.println("Include:");
-        order.getCart().getCartEntries()
-                .forEach(cartEntry -> System.out.println(cartEntry.getProduct().getName() + " in amount of: " + cartEntry.getRequestedAmount() ));
+        PackagingService packagingService = new PackingBoxService();
+        AddressingService addressingService = new UpsAddressEtiquetteService();
+        CompletingService completingService = new PackagedGoodsCompletingService();
+
+        packagingService.prepareContainer(order.getClient());
+        addressingService.prepareAddressEtiquette(order.getDeliveryDetails());
+        completingService.displayItemsToBeIncluded(order.getCart().getCartEntries());
 
         return true;
     }
