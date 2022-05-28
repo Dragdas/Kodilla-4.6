@@ -1,6 +1,8 @@
 
 import com.kodilla.good.patterns.challenges.food2door.Order;
 import com.kodilla.good.patterns.challenges.food2door.OrderHelper;
+import com.kodilla.good.patterns.challenges.food2door.product.ExtraPopcorn;
+import com.kodilla.good.patterns.challenges.food2door.product.Product;
 import com.kodilla.good.patterns.challenges.food2door.services.ServicesDto;
 
 
@@ -8,20 +10,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //MovieStore.challengeSolution();
 
-        //AllegroSolutionRunner.runSolution();
+        Product p1 = new ExtraPopcorn();
+        Product p2 = p1;
 
+        System.out.println(p1);
+        System.out.println(p2);
+        System.out.println(p1.equals(p2));
 
-        Order orderStakes = OrderHelper.generateSteakOrder();
-        Order orderExtraFood = OrderHelper.generateExtraFoodOrder();
-        Order orderHealthyPancakes = OrderHelper.generateHealthyShopOrder();
-        Order orderGlutenFree = OrderHelper.generateGlutenFreeOrder();
-
-        OrderHelper.executeOrderingProcess(orderStakes);
-        OrderHelper.executeOrderingProcess(orderExtraFood);
-        OrderHelper.executeOrderingProcess(orderHealthyPancakes);
-        OrderHelper.executeOrderingProcess(orderGlutenFree);
 
     }
 
