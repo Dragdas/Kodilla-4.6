@@ -13,7 +13,6 @@ wymagania:
 
 
 potrzebuje:
-Klasę miasto + override equals()
-interface miasto? raczej nie
+        -DONE-  Klasę miasto + override equals()
 klasa lot
 
