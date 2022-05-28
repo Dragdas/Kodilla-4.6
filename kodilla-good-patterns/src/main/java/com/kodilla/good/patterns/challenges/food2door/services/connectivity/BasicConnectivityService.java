@@ -6,6 +6,6 @@ public class BasicConnectivityService implements SupplierConnectivityService{
 
     @Override
     public void connectTo(FoodSupplier foodSupplier) {
-        System.out.println("Connecting to " + foodSupplier.getSupplierName());
+        System.out.println("Connecting to " + foodSupplier.getName());
     }
 }

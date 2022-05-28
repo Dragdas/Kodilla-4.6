@@ -17,6 +17,10 @@ public class Order {
         this.products = products;
     }
 
+    public FoodSupplier getFoodSupplier() {
+        return foodSupplier;
+    }
+
     @Override
     public String toString() {
         return "Order{" +

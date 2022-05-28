@@ -4,6 +4,7 @@ import com.kodilla.good.patterns.challenges.food2door.Order;
 import com.kodilla.good.patterns.challenges.food2door.StockDto;
 import com.kodilla.good.patterns.challenges.food2door.product.Product;
 import com.kodilla.good.patterns.challenges.food2door.product.Ribeye;
+import com.kodilla.good.patterns.challenges.food2door.services.ServicesDto;
 import com.kodilla.good.patterns.challenges.food2door.services.connectivity.SupplierConnectivityService;
 import com.kodilla.good.patterns.challenges.food2door.services.feching.OrderFetchingService;
 import com.kodilla.good.patterns.challenges.food2door.services.retrivering.StatusRetrieverService;
@@ -13,17 +14,19 @@ import java.util.List;
 
 public abstract class FoodSupplier implements Supplier {
 
+
     List<Long> idsOfProcessedOrders = new ArrayList<>();
 
     SupplierConnectivityService supplierConnectivityService;
     OrderFetchingService orderFetchingService;
     StatusRetrieverService statusRetrieverService;
 
-    public FoodSupplier(SupplierConnectivityService supplierConnectivityService, OrderFetchingService orderFetchingService, StatusRetrieverService statusRetrieverService) {
-        this.supplierConnectivityService = supplierConnectivityService;
-        this.orderFetchingService = orderFetchingService;
-        this.statusRetrieverService = statusRetrieverService;
+    public FoodSupplier(ServicesDto servicesDto) {
+        this.supplierConnectivityService = servicesDto.getConnectivityService();
+        this.orderFetchingService = servicesDto.getOrderFetchingService();
+        this.statusRetrieverService = servicesDto.getStatusRetrieverService();
     }
+
 
     @Override
     public StockDto getStockInformation() {
@@ -46,22 +49,12 @@ public abstract class FoodSupplier implements Supplier {
         return statusRetrieverService.isOrderProcessed(id);
     }
 
-    public String getSupplierName(){
-        System.out.println("Requesting suppliers name");
-        return "Suppliers name";
-    }
+    public abstract String getName();
 
-    public List<Product> getProducts(){
-        System.out.println("Request for product list");
-        List<Product> products = new ArrayList<>();
-
-        products.add( new Ribeye());
-
-        return products;
-    }
+    abstract List<Product> getProducts();
 
     @Override
     public String toString() {
-        return "FoodSupplier: " + getSupplierName();
+        return "FoodSupplier: " + getName();
     }
 }

@@ -5,6 +5,8 @@ import com.kodilla.good.patterns.challenges.food2door.StockDto;
 
 public interface Supplier {
 
+    String getName();
+
     StockDto getStockInformation();
 
     long process(Order Order);
