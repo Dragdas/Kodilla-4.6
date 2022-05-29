@@ -38,4 +38,18 @@ public class FlightSearchService {
                 .collect(Collectors.toList());
     }
 
+    public List<Flight> findFlight(City departure, City destination, boolean isIndirectFlightAllowed){
+
+        return flightsDB.getFlights().stream()
+                .filter(flight -> {
+                    if( isIndirectFlightAllowed)
+                        return true;
+                    return flight.getStopovers().size() == 0;})
+                .filter(flight -> flight.getDeparture().equals(departure) && flight.getDestination().equals(destination) )
+                .collect(Collectors.toList());
+
+
+    }
+
+
 }

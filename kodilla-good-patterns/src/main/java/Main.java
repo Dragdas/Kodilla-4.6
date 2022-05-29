@@ -18,8 +18,8 @@ public class Main {
 
         List<Flight> flightsToWro = flightSearchService.findFlightsTo(City.getCity(WRO));
         List<Flight> flightsFromGDK = flightSearchService.findFlightsFrom(City.getCity(GDK));
-        List<Flight> flightsWithStopover= flightSearchService.findFlightsWithStopoverIn(City.getCity(WAW));
-        List<Flight> flightsWithStopovers = flightSearchService.findFlightsWithStopoversIn(List.of(City.getCity(WAW), City.getCity(KRK) ));
+        List<Flight> flightsFromGDKtoWRO = flightSearchService.findFlight(City.getCity(GDK), City.getCity(WRO), true);
+        List<Flight> flightsDirectlyFromGDKtoWRO = flightSearchService.findFlight(City.getCity(GDK), City.getCity(WRO), false);
 
         System.out.println();
         flightsToWro.forEach(System.out::println);
@@ -30,12 +30,17 @@ public class Main {
         System.out.println();
 
         System.out.println();
-        flightsWithStopover.forEach(System.out::println);
+        flightsFromGDK.forEach(System.out::println);
         System.out.println();
 
         System.out.println();
-        flightsWithStopovers.forEach(System.out::println);
+        flightsFromGDKtoWRO.forEach(System.out::println);
         System.out.println();
+
+        System.out.println();
+        flightsDirectlyFromGDKtoWRO.forEach(System.out::println);
+        System.out.println();
+
 
     }
 
