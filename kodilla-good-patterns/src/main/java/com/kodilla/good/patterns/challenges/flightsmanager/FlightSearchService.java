@@ -3,18 +3,16 @@ package com.kodilla.good.patterns.challenges.flightsmanager;
 import com.kodilla.good.patterns.challenges.flightsmanager.cities.City;
 import com.kodilla.good.patterns.challenges.flightsmanager.flight.Flight;
 import com.kodilla.good.patterns.challenges.flightsmanager.flightsDB.FlightsDBEmulator;
+import lombok.AllArgsConstructor;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@AllArgsConstructor
 public class FlightSearchService {
 
     private FlightsDBEmulator flightsDB;
-
-    public FlightSearchService(FlightsDBEmulator flightsDB) {
-        this.flightsDB = flightsDB;
-    }
 
     public List<Flight> findFlightsFrom(City departure){
         return flightsDB.getFlights().stream()
@@ -39,7 +37,5 @@ public class FlightSearchService {
                 .filter(flight -> new HashSet<>(new HashSet<>(flight.getStopovers())).containsAll(stopovers) )
                 .collect(Collectors.toList());
     }
-
-
 
 }

@@ -1,15 +1,17 @@
 package com.kodilla.good.patterns.challenges.flightsmanager.cities;
 
+import lombok.Getter;
 
 import java.util.Map;
 import java.util.Objects;
 
 import static com.kodilla.good.patterns.challenges.flightsmanager.cities.SupportedCities.*;
 
+
 public class City {
 
-    private String name;
-    private String alias;
+    @Getter private String name;
+    @Getter private String alias;
 
     private City(String name, String alias) {
         this.name = name;
@@ -25,14 +27,6 @@ public class City {
 
     public static City getCity(SupportedCities cityAlias){
         return cities.get(cityAlias);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getAlias() {
-        return alias;
     }
 
     @Override

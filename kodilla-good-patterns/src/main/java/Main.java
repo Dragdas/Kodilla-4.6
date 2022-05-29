@@ -13,8 +13,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //TODO dlaczego lombok nie działa?!
-
         FlightsDBEmulator   flightsDBEmulator =     new FlightsDBEmulator();
         FlightSearchService flightSearchService =   new FlightSearchService(flightsDBEmulator);
 
@@ -40,7 +38,5 @@ public class Main {
         System.out.println();
 
     }
-
-
 
 }

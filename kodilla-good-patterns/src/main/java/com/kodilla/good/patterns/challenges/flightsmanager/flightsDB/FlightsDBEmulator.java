@@ -2,6 +2,7 @@ package com.kodilla.good.patterns.challenges.flightsmanager.flightsDB;
 
 import com.kodilla.good.patterns.challenges.flightsmanager.cities.City;
 import com.kodilla.good.patterns.challenges.flightsmanager.flight.Flight;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import static com.kodilla.good.patterns.challenges.flightsmanager.cities.Support
 
 public class FlightsDBEmulator {
 
+    @Getter
     private List<Flight> flights = new ArrayList<>();
 
     public FlightsDBEmulator() {
@@ -36,7 +38,4 @@ public class FlightsDBEmulator {
 
     }
 
-    public List<Flight> getFlights() {
-        return flights;
-    }
 }
