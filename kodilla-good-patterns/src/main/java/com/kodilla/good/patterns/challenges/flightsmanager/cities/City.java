@@ -2,6 +2,7 @@ package com.kodilla.good.patterns.challenges.flightsmanager.cities;
 
 
 import java.util.Map;
+import java.util.Objects;
 
 import static com.kodilla.good.patterns.challenges.flightsmanager.cities.SupportedCities.*;
 
@@ -32,5 +33,23 @@ public class City {
 
     public String getAlias() {
         return alias;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof City)) return false;
+        City city = (City) o;
+        return Objects.equals(getName(), city.getName()) && Objects.equals(getAlias(), city.getAlias());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAlias());
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

@@ -1,14 +1,9 @@
 
+import com.kodilla.good.patterns.challenges.flightsmanager.FlightSearchService;
 import com.kodilla.good.patterns.challenges.flightsmanager.cities.City;
-import com.kodilla.good.patterns.challenges.flightsmanager.cities.SupportedCities;
 import com.kodilla.good.patterns.challenges.flightsmanager.flight.Flight;
-import com.kodilla.good.patterns.challenges.food2door.Order;
-import com.kodilla.good.patterns.challenges.food2door.OrderHelper;
-import com.kodilla.good.patterns.challenges.food2door.product.ExtraPopcorn;
-import com.kodilla.good.patterns.challenges.food2door.product.Product;
-import com.kodilla.good.patterns.challenges.food2door.services.ServicesDto;
+import com.kodilla.good.patterns.challenges.flightsmanager.flightsDB.FlightsDBEmulator;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.kodilla.good.patterns.challenges.flightsmanager.cities.SupportedCities.*;
@@ -18,12 +13,31 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //TODO dlaczego lombok nie działa?
+        //TODO dlaczego lombok nie działa?!
 
-        Flight f1 = new Flight("FL123", City.getCity(KRK), City.getCity(WAW), List.of(City.getCity(WRO)), LocalDateTime.now(), LocalDateTime.now().plusHours(1) );
+        FlightsDBEmulator   flightsDBEmulator =     new FlightsDBEmulator();
+        FlightSearchService flightSearchService =   new FlightSearchService(flightsDBEmulator);
 
-        System.out.println(f1.getArrivalTime());
+        List<Flight> flightsToWro = flightSearchService.findFlightsTo(City.getCity(WRO));
+        List<Flight> flightsFromGDK = flightSearchService.findFlightsFrom(City.getCity(GDK));
+        List<Flight> flightsWithStopover= flightSearchService.findFlightsWithStopoverIn(City.getCity(WAW));
+        List<Flight> flightsWithStopovers = flightSearchService.findFlightsWithStopoversIn(List.of(City.getCity(WAW), City.getCity(KRK) ));
 
+        System.out.println();
+        flightsToWro.forEach(System.out::println);
+        System.out.println();
+
+        System.out.println();
+        flightsFromGDK.forEach(System.out::println);
+        System.out.println();
+
+        System.out.println();
+        flightsWithStopover.forEach(System.out::println);
+        System.out.println();
+
+        System.out.println();
+        flightsWithStopovers.forEach(System.out::println);
+        System.out.println();
 
     }
 

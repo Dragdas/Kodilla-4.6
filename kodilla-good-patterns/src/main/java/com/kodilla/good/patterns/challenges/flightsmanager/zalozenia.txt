@@ -1,18 +1,18 @@
-lista ze wszystkimi lotami GDK - Wro
+        -DONE-  lista ze wszystkimi lotami GDK - Wro
 
 serwis wyszukiwania z funkcjonalnosciami:
-        Znalezienie wszystkich lotow z danego miasta
-        Znalezienie wszystkich lotow do danego miasta
-        Znalezienie lotow z miedzylondowaniem w danym miescie
+        -DONE-          Znalezienie wszystkich lotow z danego miasta
+        -DONE-          Znalezienie wszystkich lotow do danego miasta
+        -DONE-          Znalezienie lotow z miedzylondowaniem w danym miescie
 
 wymagania:
-1. iteracje przez streamy
-2. wykorzystanie equals()
-3. wykorzysatnie hashCode
+1. iteracje przez streamy        -DONE-
+2. wykorzystanie equals()        -DONE-
+3. wykorzysatnie hashCode        -DONE-
 
 
 
 potrzebuje:
         -DONE-  Klasę miasto + override equals()
-klasa lot
+        -DONE-  klasa lot
 
