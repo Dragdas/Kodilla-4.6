@@ -8,4 +8,4 @@ include 'kodilla-exception:kodilla-spring-intro'
 findProject(':kodilla-exception:kodilla-spring-intro')?.name = 'kodilla-spring-intro'
 include 'kodilla-spring-intro'
 include 'kodilla-spring'
-
+include 'kodilla-spring-web'
