@@ -1,0 +1,79 @@
+CREATE TABLE ISSUESLISTS
+(
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100) NOT NULL
+
+);
+
+CREATE TABLE ISSUES(
+    ID SERIAL PRIMARY KEY ,
+    ISSUESLIST_ID BIGINT UNSIGNED NOT NULL,
+    SUMMARY VARCHAR(1024) NOT NULL,
+    DESCRIPTION VARCHAR(4096),
+    USER_ID_ASSIGNEDTO BIGINT UNSIGNED NOT NULL,
+
+    FOREIGN KEY (ISSUESLIST_ID) REFERENCES ISSUESLISTS(ID),
+    FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS(ID)
+
+);
+
+INSERT INTO ISSUESLISTS(NAME) values ('TODO');
+INSERT INTO ISSUESLISTS(NAME) values ('In progress');
+INSERT INTO ISSUESLISTS(NAME) values ('Done');
+
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+values (1,'Zakupy', 'Kup mleko, jajka, mąke', 1);
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+values (1,'Gotowanie', 'Zob nalesniki', 2);
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+values (1,'Kurs kodilla', 'Zrób zadanie z SQLa', 1);
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+values (1,'Kurs kodilla', 'Naucz się SQLa', 3);
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+values (1,'Ostatni todo', 'Skopiuj tą linijkę jeszcze 10 razy', 5);
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+values (2,'Naucz się programować', 'pisz', 3);
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+values (2,'Naucz się programować', 'czytaj', 4);
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+values (2,'Stworz portfolio', 'Wymysl sobie projekt i go napisz', 1);
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+values (2,'Daj feedback kodilli ', 'Napisz  ze kopiowanie kodu z właśnie przyczytanego modulu jest bez sensu', 1);
+
+INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
+    values
+        (
+            3,
+            'Wyjdz ponad to',
+            'zamiast sie frustrowac zrob to jednym poleceniem',
+            4
+        ),
+        (
+            3,
+            'Wciaz kopiuje',
+            'ale przynajmniej wyglada lepiej',
+            1
+        ),
+        (
+            3,
+            'Na pewno?',
+            'w sumie w pojedynczych linijkach bardziej mi sie podobalo',
+            4
+        ),
+        (
+            3,
+            'Whatever',
+            'przynajmniej znam teraz inny sposob jak to zrobić',
+            2
+        );
+
+COMMIT ;

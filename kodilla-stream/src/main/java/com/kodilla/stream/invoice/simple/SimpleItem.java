@@ -10,7 +10,7 @@ public final class SimpleItem {
         this.quantity = quantity;
     }
 
-    public double getValeu(){
+    public double getValue(){
         return product.getProductPrice() * quantity;
     }
 
