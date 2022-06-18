@@ -1,0 +1,15 @@
+SELECT issues.SUMMARY, issues.DESCRIPTION, lists.NAME
+FROM issues
+JOIN issueslists lists on lists.ID = issues.ISSUESLIST_ID;
+
+
+SELECT issues.SUMMARY, issues.DESCRIPTION, u.FIRSTNAME, u.LASTNAME
+FROM issues
+JOIN users u on issues.USER_ID_ASSIGNEDTO = u.ID;
+
+
+SELECT u.FIRSTNAME, u.LASTNAME, COUNT(*) AS ASSIGNED_TASKS
+FROM issues
+JOIN users u on issues.USER_ID_ASSIGNEDTO = u.ID
+GROUP BY u.ID
+HAVING COUNT(*) > 0;
