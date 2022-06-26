@@ -1,7 +1,7 @@
 package com.kodilla.kodillahibernate.task;
 
+import com.kodilla.kodillahibernate.tasklist.TaskList;
 import com.sun.istack.NotNull;
-import org.springframework.context.annotation.Primary;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -17,9 +17,20 @@ public class Task {
     @NotNull
     @Column(name="ID", unique=true)
     private int id;
+    @Column(name = "DESCRIPTION")
     private String description;
+    @Column(name="CREATED")
+    @NonNull
     private Date created;
+    @Column(name = "DURATION")
     private int duration;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "TASKS_FINANCIALS_ID", referencedColumnName = "ID")
+    private TaskFinancialDetails taskFinancialDetails;
+
+    @ManyToOne
+    @JoinColumn(name = "TASKLIST_ID")
+    private TaskList taskList;
 
     public Task() {
     }
@@ -30,24 +41,21 @@ public class Task {
         this.duration = duration;
     }
 
-
-
     public int getId() {
         return id;
     }
 
-    @Column(name = "DESCRIPTION")
+
     public String getDescription() {
         return description;
     }
 
-    @Column(name="CREATED")
-    @NonNull
+
     public Date getCreated() {
         return created;
     }
 
-    @Column(name = "DURATION")
+
     public int getDuration() {
         return duration;
     }
@@ -67,6 +75,23 @@ public class Task {
     private void setDuration(int duration) {
         this.duration = duration;
     }
+
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
+    public void setTaskList(TaskList taskList) {
+        this.taskList = taskList;
+    }
+
+    public TaskFinancialDetails getTaskFinancialDetails() {
+        return taskFinancialDetails;
+    }
+
+    public void setTaskFinancialDetails(TaskFinancialDetails taskFinancialDetails) {
+        this.taskFinancialDetails = taskFinancialDetails;
+    }
+
 
     @Override
     public boolean equals(Object o) {
