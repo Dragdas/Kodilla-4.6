@@ -2,7 +2,6 @@ package com.kodilla.kodillahibernate.manytomany.dao;
 
 import com.kodilla.kodillahibernate.manytomany.Company;
 import com.kodilla.kodillahibernate.manytomany.Employee;
-import com.kodilla.kodillahibernate.tasklist.dao.CompanyDao;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +13,9 @@ class CompanyDaoTestSuite {
 
     @Autowired
     private CompanyDao companyDao;
+
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @Test
     void testSaveManyToMany() {
@@ -60,4 +62,67 @@ class CompanyDaoTestSuite {
            //do nothing
         }
     }
+
+    @Test
+    void testCompanyNamedQuery(){
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMasters = new Company("Data Maesters");
+        Company ibmcorp = new Company("IBM corp");
+
+        companyDao.save(softwareMachine);
+        int softwareMachineId = softwareMachine.getId();
+        companyDao.save(dataMasters);
+        int dataMastersId = dataMasters.getId();
+        companyDao.save(ibmcorp);
+        int ibmId = ibmcorp.getId();
+
+        //When
+        int querySize = companyDao.retrieveCompaniesWhichName("IBM").size();
+
+        //Then
+        assertEquals(1, querySize);
+
+        //Cleanup
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMastersId);
+            companyDao.deleteById(ibmId);
+        } catch (Exception e) {
+            //do nothing
+        }
+
+    }
+
+    @Test
+    void testEmployeeNamedQuery(){
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+
+        employeeDao.save(johnSmith);
+        int johnId = johnSmith.getId();
+        employeeDao.save(stephanieClarckson);
+        int stephanieId = stephanieClarckson.getId();
+
+        //when
+        int querySize = employeeDao.retrieveEmployeesByName("Smith").size();
+
+        //Then
+        assertEquals(1, querySize);
+
+        //Cleanup
+        try {
+            employeeDao.deleteById(johnId);
+            employeeDao.deleteById(stephanieId);
+        } catch (Exception e) {
+            //do nothing
+        }
+
+
+    }
+
+
+
+
 }

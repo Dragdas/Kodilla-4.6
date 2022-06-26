@@ -5,6 +5,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NamedQuery(
+        name = "Company.retrieveCompaniesWhichName",
+        query = "FROM Company WHERE SUBSTRING(name,1,3) = :STARTS_WITH"
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {

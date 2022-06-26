@@ -9,6 +9,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NamedQuery(
+        name = "Employee.retrieveEmployeesByName",
+        query = "FROM Employee WHERE lastName = :NAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
