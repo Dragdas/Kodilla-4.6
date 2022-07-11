@@ -16,7 +16,7 @@ public class Segment {
     private void initialize(int startingColumn, int startingRow){
         for(int rowsCreationCounter = 0; rowsCreationCounter < 3 ; rowsCreationCounter++ ){
             for(int columnCreationCounter = 0; columnCreationCounter < 3; columnCreationCounter++  ){
-                cells.add(new Cell(new Coordinates(startingRow + rowsCreationCounter,startingColumn + columnCreationCounter), this));
+                cells.add(new Cell(new Coordinates(startingColumn + columnCreationCounter, startingRow + rowsCreationCounter), this));
             }
         }
 

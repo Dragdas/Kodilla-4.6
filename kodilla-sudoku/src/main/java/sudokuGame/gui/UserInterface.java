@@ -49,8 +49,8 @@ public class UserInterface {
                 List<Integer> values = Arrays.stream(answer.split(",")).toList().stream()
                                         .map(Integer::valueOf)
                                         .toList();
-
-                Coordinates usersCoordinates = new Coordinates(values.get(0)-1, values.get(1)-1);
+                String s= "da";
+                Coordinates usersCoordinates = new Coordinates(values.get(1)-1, values.get(0)-1);
                 int usersValue = values.get(2);
 
                 try {
@@ -58,14 +58,15 @@ public class UserInterface {
                 }catch (WrongCoordinatesException e){
                     System.out.println("Wrong coordinates exception in askForInitialValues method");
                 }
-
-
             }
         }
+    }
 
-
-
-
+    public void invalidInitialValuesNotification(){
+        System.out.println("Provided initial values are invalid.");
+        System.out.println("Please make sure to provide unique values in each row, column and segment");
+        System.out.println("Press enter");
+        userInput.nextLine();
     }
 
 

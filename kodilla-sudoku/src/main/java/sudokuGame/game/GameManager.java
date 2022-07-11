@@ -1,6 +1,7 @@
 package sudokuGame.game;
 
 import sudokuGame.board.Board;
+import sudokuGame.gui.UserInputValidator;
 import sudokuGame.gui.UserInterface;
 
 public class GameManager {
@@ -14,8 +15,19 @@ public class GameManager {
     }
 
     public void play(){
-        ui.greet();
-        ui.askForInitialValues();
+
+        while (true){
+            board = new Board();
+            ui.greet();
+            ui.askForInitialValues();
+            if(UserInputValidator.isBoardStateValid(board))
+                break;
+            ui.invalidInitialValuesNotification();
+        }
+
+
+
+
 
 
     }

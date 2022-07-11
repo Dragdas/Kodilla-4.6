@@ -85,4 +85,8 @@ public class Board {
     public List<Cell> getCells() {
         return cells;
     }
+
+    public List<Segment> getSegments() {
+        return segments;
+    }
 }
