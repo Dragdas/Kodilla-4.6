@@ -19,12 +19,9 @@ public class EmployeeFacade {
         this.employeeDb = employeeDb;
     }
 
-
     public List<Employee> findEmployeeBy(String nameFragment){
         String searchFragment = "%" + nameFragment + "%";
         return employeeDb.findEmployeesByNameFragment(searchFragment);
     }
-
-
 
 }

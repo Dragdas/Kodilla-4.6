@@ -25,19 +25,15 @@ class EmployeeFacadeTest {
         Employee employee = new Employee("Wojtek", "Kurtyka");
         employeeDb.save(employee);
 
-
         //When
         int searchByFirstNameFragment   = employeeFacade.findEmployeeBy("ojt").size();
         int searchByLastNameFragment    = employeeFacade.findEmployeeBy("rtyk").size();
-
 
         //Then
         assertEquals(1, searchByFirstNameFragment);
         assertEquals(1, searchByLastNameFragment);
 
-
-
-
+        //cleanup
         employeeDb.deleteById(employee.getId());
 
     }
