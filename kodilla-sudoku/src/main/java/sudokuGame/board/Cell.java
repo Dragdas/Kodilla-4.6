@@ -21,6 +21,7 @@ public class Cell {
 
     public void setValue(int value) {
         this.value = value;
+        possibleValues.clear();
         isEmpty = false;
     }
 
@@ -53,6 +54,10 @@ public class Cell {
 
     public boolean isEmpty() {
         return isEmpty;
+    }
+
+    public Segment getSegment() {
+        return segment;
     }
 
     public List<Integer> getPossibleValues() {

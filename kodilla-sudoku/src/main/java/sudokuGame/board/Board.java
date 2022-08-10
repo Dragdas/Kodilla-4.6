@@ -82,6 +82,18 @@ public class Board {
 
     }
 
+    public Cell getCellByCoordinates(int column, int row) throws WrongCoordinatesException {
+
+        List<Cell> cellList = cells.stream().filter(cell -> cell.getColumn()==column && cell.getRow()==row ).toList();
+
+        if(cellList.size()==1)
+            return cellList.get(0);
+        else throw new WrongCoordinatesException();
+
+    }
+
+
+
     public List<Cell> getCells() {
         return cells;
     }

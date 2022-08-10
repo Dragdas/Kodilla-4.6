@@ -2,6 +2,7 @@ package sudokuGame.board;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Segment {
     private List<Cell> cells = new ArrayList<>();
@@ -22,8 +23,18 @@ public class Segment {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Segment)) return false;
+        Segment segment = (Segment) o;
+        return Objects.equals(getCells(), segment.getCells()) && Objects.equals(topLeftCoordinates, segment.topLeftCoordinates);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCells(), topLeftCoordinates);
+    }
 
     public List<Cell> getCells() {
         return cells;

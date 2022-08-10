@@ -16,4 +16,10 @@ public interface CompanyDao extends CrudRepository<Company, Integer> {
 
     @Query
     List<Company> retrieveCompaniesWhichName(@Param("STARTS_WITH") String startsWith);
+
+
+    @Query("SELECT c FROM Company c where c.name like ?1")
+    List<Company> findCompaniesByNameFragment( String nameFragment);
+
+
 }
