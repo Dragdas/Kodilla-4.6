@@ -1,6 +1,5 @@
 package com.kodilla.patterns2.aop.calculator;
 
-import com.kodilla.patterns2.facade.api.OrderDto;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -20,12 +19,6 @@ public class Watcher {
             "&& args(theNumber) && target(object)")
     public void logEvent(BigDecimal theNumber, Object object) {
         LOGGER.info("Class: " + object.getClass().getName() + ", Args: " + theNumber);
-    }
-
-    @Before("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))" +
-            "&& args(order, userId) && target(object)")
-    public void logFacadeEvent(OrderDto order, long userId, Object object) {
-        LOGGER.info("\nClass: \n" + object.getClass().getName() + "\ncalled processOrder with args: \nUserID: " + userId + "\nItems\n" + order);
     }
 
     @Around("execution(* com.kodilla.patterns2.aop.calculator.Calculator.factorial(..))")
